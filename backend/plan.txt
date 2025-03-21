@@ -1,0 +1,3 @@
+so i will be using express for the backend
+zod for validation schema 
+mongoose for database(mongodb)
