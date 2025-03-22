@@ -1,6 +1,6 @@
     const express = require("express") ;
     const zod = require("zod");
-    const { User } = require("../db");
+    const { User, Accounts } = require("../db");
     const jwt = require("jsonwebtoken")
     const {JWT_SECRET} = require("../config");
     const { authMiddleware } = require("../middleware");
@@ -50,7 +50,13 @@
             firstName:req.body.firstName,
             lastName : req.body.lastName
         });
+
         const userId = dbUser._id
+
+        const Accounts = await Accounts.create({
+            userId ,
+            balance : 1 + Math.random *
+        })
         const token = jwt.sign({
             userId
         }, JWT_SECRET)
