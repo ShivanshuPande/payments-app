@@ -1,23 +1,8 @@
 const express = require("express");
 const app = express();
-const port= 3000;
+const mainRouter = require("./routes/index")
+const userRouter = require("./routes/user")
 
-app.use(express.json());
+app.use("/api/v1" , mainRouter);
 
-app.get("/" , (req , res) =>{
- 
-})
-
-app.post("/" , (req,res)=>{
-
-})
-
-app.put("/" ,  (req , res)=>{
-
-}) 
-
-app.delete("/" ,  (req , res)=>{
-    
-}) 
-
-app.listen(port , ()=>console.log(`The backend is running on the port ${port}`))
+app.use("/api/v1" , userRouter )
