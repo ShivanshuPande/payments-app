@@ -8,7 +8,7 @@ const { authMiddleware } = require("../middleware");
 const signSchema = zod.object({
     username : zod.string(),
     firstName : zod.string(),
-    lastname : zod.string(),
+    lastName : zod.string(),
     password  :zod.number()
     
 })
@@ -38,7 +38,7 @@ router.post("/signup" , async(req,res)=>{
         username: req.body.username,
         password : req.body.password,
         firstName:req.body.firstName,
-        lastname : req.body.lastname
+        lastName : req.body.lastName
     });
     const userId = dbUser._id
     const token = jwt.sign({
@@ -87,7 +87,7 @@ router.post("/signin" ,async (req,res)=>{
     })
 })
 
-router.put("/api/v1/user" , authMiddleware , async(req, res)=>{
+router.put("/user" , authMiddleware , async(req, res)=>{
     const updateBody = zod.object({
         password:zod.number().optional(),
         firstName:zod.string().optional(),
@@ -105,6 +105,32 @@ router.put("/api/v1/user" , authMiddleware , async(req, res)=>{
 
     res.status(200).json({
         message : "updated the info"
+    })
+})
+//query para --here
+// sql query --- SELECT * FROM  users WHERE name LIKE %poke%
+router.get("/bulk" , authMiddleware , async (req ,res) =>{
+    const filter  = req.query.filter || " ";
+
+    const users = await User.find({
+        $or :[{
+            firstName : {
+                "$regex"  : filter
+            }
+        } , {
+            lastName : {
+                "regex" : filter
+            }
+        }]
+    })
+
+    res.json({
+        user : users.map(user =>({
+            username : users.username ,
+            firstName : users.firstName ,
+            lastName : users.lastName,
+            _id : users._id 
+        }))
     })
 })
 
