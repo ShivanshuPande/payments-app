@@ -6,7 +6,7 @@ const JWT_SECRET = require("../config");
 
 const signSchema = zod.object({
     username : zod.string(),
-    password : zod.string(),
+    lastname : zod.string(),
     firstName : zod.string(),
     password  :zod.string()
     
