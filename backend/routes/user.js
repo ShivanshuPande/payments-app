@@ -87,8 +87,25 @@ router.post("/signin" ,async (req,res)=>{
     })
 })
 
-router.put("/api/v1/user" , authMiddleware , (req, res)=>{
-    
+router.put("/api/v1/user" , authMiddleware , async(req, res)=>{
+    const updateBody = zod.object({
+        password:zod.number().optional(),
+        firstName:zod.string().optional(),
+        lastName: zod.string().optional()
+    })
+
+    const {success} = updateBody.safeParse(req.body);
+    if(!success){
+        res.status(403).json({
+            message : "Error while updating the information "
+        })
+    }
+
+    await User.updateOne({_id : req.userId} ,{$set :req.body})
+
+    res.status(200).json({
+        message : "updated the info"
+    })
 })
 
 module.exports = router;

@@ -31,6 +31,6 @@ const authMiddleware =()=>{
 };
 
 module.exports={
-    authMiddleware
+    authMiddleware 
 }
 
