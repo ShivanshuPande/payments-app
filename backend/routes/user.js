@@ -1,5 +1,9 @@
 const express = require("express") ;
 
-const userRouter = express.Router();
+const router = express.Router();
 
-module.exports = userRouter;
+router.get("/" , (req,res)=>{
+    
+})
+
+module.exports = router;
