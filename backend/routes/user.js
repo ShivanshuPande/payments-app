@@ -12,6 +12,16 @@ const signSchema = zod.object({
     password  :zod.number()
     
 })
+const signinSchema = zod.object({
+    username:zod.string(),
+    password : zod.number()
+})
+
+const updateBody = zod.object({
+    password:zod.number().optional(),
+    firstName:zod.string().optional(),
+    lastName: zod.string().optional()
+})
 const router = express.Router();
 
 router.post("/signup" , async(req,res)=>{
@@ -52,11 +62,7 @@ router.post("/signup" , async(req,res)=>{
 
 router.post("/signin" ,async (req,res)=>{
 
-    const signinSchema = zod.object({
-        username:zod.string(),
-        password : zod.number()
-    })
-
+    
     const success = signinSchema.safeParse(req.body);
 
     if(!success){
@@ -88,11 +94,7 @@ router.post("/signin" ,async (req,res)=>{
 })
 
 router.put("/user" , authMiddleware , async(req, res)=>{
-    const updateBody = zod.object({
-        password:zod.number().optional(),
-        firstName:zod.string().optional(),
-        lastName: zod.string().optional()
-    })
+    
 
     const {success} = updateBody.safeParse(req.body);
     if(!success){
