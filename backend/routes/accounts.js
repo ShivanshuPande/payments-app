@@ -23,7 +23,7 @@ router.get("/balance" ,authMiddleware, async (req,res) => {
         })
     }
     res.json({  
-        balance : holder.balan
+        balance : holder.balance
     })
 
 })
