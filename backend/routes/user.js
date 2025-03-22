@@ -3,6 +3,7 @@ const zod = require("zod");
 const { User, User } = require("../db");
 const jwt = ("jsonwebtoken")
 const JWT_SECRET = require("../config");
+const { authMiddleware } = require("../middleware");
 
 const signSchema = zod.object({
     username : zod.string(),
@@ -84,6 +85,10 @@ router.post("/signin" ,async (req,res)=>{
         message:"Welcome back to the website",
         token : token
     })
+})
+
+router.put("/api/v1/user" , authMiddleware , (req, res)=>{
+    
 })
 
 module.exports = router;
