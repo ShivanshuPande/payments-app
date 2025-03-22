@@ -23,7 +23,8 @@ const userSchema = new mongoose.Schema({
 
 const accountSchema = new mongoose.Schema({
     userId : {
-        type : String ,
+        type : mongoose.Schema.Types.ObjectId , // references to the User Model  --- more questions on this
+        ref : 'User' ,
         required : true
     } ,
     Balance : {
