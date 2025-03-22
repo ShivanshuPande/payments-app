@@ -55,8 +55,9 @@
 
         const Accounts = await Accounts.create({
             userId ,
-            balance : 1 + Math.random *
+            balance : 1 + Math.random * 10000
         })
+        
         const token = jwt.sign({
             userId
         }, JWT_SECRET)
