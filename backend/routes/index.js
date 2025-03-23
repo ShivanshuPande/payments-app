@@ -1,13 +1,23 @@
+// const express = require("express");
+// const app = express();
+// const userRouter = require("./user")
+// const  accountRouter =  require("./accounts")
+
+
+// const router = express.Router();
+
+// app.use("/users" ,userRouter );
+// app.use("/account" , accountRouter)
+// module.exports = router ;
+
+// routes/index.js
 const express = require("express");
-const app = express();
-import userRouter from "./user";
-import accountRouter from "./accounts"
-const cors = require("cors");
-app.use(cors());
-app.use(express.json())
+const userRouter = require("./user");
+const accountRouter = require("./accounts");
 
 const router = express.Router();
 
-app.use("/users" ,userRouter );
-app.use("/account" , accountRouter)
-module.exports = router ;
+router.use("/users", userRouter);
+router.use("/account", accountRouter);
+
+module.exports = router;

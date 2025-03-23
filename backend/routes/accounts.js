@@ -1,4 +1,5 @@
 const express = require("express");
+const zod = require("zod")
 const { authMiddleware } = require("../middleware");
 const { Accounts } = require("../db");
 const { default: mongoose } = require("mongoose");
@@ -6,11 +7,6 @@ const router = express.Router();
 const app = express();
 router.use(express.json())
 
-
-const transferSchema = zod.object({
-    to:string(),
-    amount :number()
-})
 
 router.get("/balance" ,authMiddleware, async (req,res) => {
     const holder = await Accounts.findOne({
