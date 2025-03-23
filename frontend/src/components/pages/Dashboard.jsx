@@ -3,6 +3,6 @@ export default function Dashboard(){
         A very good looking Dashboard Page
         <br>
         </br>
-        this might just be working 
+         .. need to get the params from the req and pass them down as a filter
     </div>
 }
