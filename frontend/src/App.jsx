@@ -17,37 +17,5 @@ function App() {
     // </BrowserRouter>
 
 
-    <BrowserRouter>
-    <div style={{ textAlign: "center", marginTop: "50px" }}>
-      <h1>Welcome to My App</h1>
-
-      {/* Navigation Buttons */}
-      <Link to="/signup">
-        <button style={buttonStyle}>Go to Signup</button>
-      </Link>
-      <Link to="/signin">
-        <button style={buttonStyle}>Go to Signin</button>
-      </Link>
-
-      <Routes>
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/signin" element={<Signin />} />
-      </Routes>
-    </div>
-  </BrowserRouter>
-  );
-}
-
-const buttonStyle = {
-  padding: "10px 20px",
-  margin: "10px",
-  backgroundColor: "#4caf50",
-  color: "white",
-  border: "none",
-  borderRadius: "5px",
-  cursor: "pointer",
-  fontSize: "16px",
-};
-
 
 export default App;

@@ -2,46 +2,51 @@ const mongoose = require("mongoose");
 mongoose.connect("mongodb+srv://Shiv_2005:Shivanshu192005@cluster0.aw2rp.mongodb.net/");
 
 const userSchema = new mongoose.Schema({
-    firstName : {
-        type : String ,
-        required  :true
+    username: {
+        type: String,
+        required: true,
+        unique: true,
+        trim: true,
+        lowercase: true,
+        minLength: 3,
+        maxLength: 30
     },
-    lastName : {
-        type : String,
-        required : true ,
-        
-    } ,
-    passWord : {type : String,
-        required : true ,
-        minLength : 8 
-    } ,
-    email : {
-        type : String ,  
-        required : true
+    password: {
+        type: String,
+        required: true,
+        minLength: 6
+    },
+    firstName: {
+        type: String,
+        required: true,
+        trim: true,
+        maxLength: 50
+    },
+    lastName: {
+        type: String,
+        required: true,
+        trim: true,
+        maxLength: 50
     }
 });
 
 const accountSchema = new mongoose.Schema({
-    userId : {
-        type : mongoose.Schema.Types.ObjectId , // references to the User Model  --- more questions on this
-        ref : 'User' ,
-        required : true
-    } ,
-    Balance : {
-        type: Number , 
-        required : true 
+    userId: {
+        type: mongoose.Schema.Types.ObjectId, // Reference to User model
+        ref: 'User',
+        required: true
+    },
+    balance: {
+        type: Number,
+        required: true
     }
-})
+});
 
+const Account = mongoose.model('Account', accountSchema);
+const User = mongoose.model('User', userSchema);
 
-const Accounts = mongoose.model("Accounts" , accountSchema);
-
-const User = mongoose.model("Users" , userSchema);
-
-
-module.exports={
-    User ,
-    Accounts
-}
-
+module.exports = {
+	User,
+    Account
+};
 //transaction in database
