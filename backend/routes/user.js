@@ -9,7 +9,7 @@
         username : zod.string(),
         firstName : zod.string(),
         lastName : zod.string(),
-        password  :zod.number()
+        password  :zod.string()
         
     })
     const signinSchema = zod.object({
@@ -26,8 +26,8 @@
 
     router.post("/signup" , async(req,res)=>{
         const body = req.body;
-        const parsedval = signSchema.safeParse(req.body);
-        if(!parsedval.success){
+        const {success} = signSchema.safeParse(req.body);
+        if(!success){
             return res.json({
                 message:"Email already taken/ Please enter a valid input"
             })
