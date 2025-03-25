@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 mongoose.connect("mongodb+srv://Shiv_2005:Shivanshu192005@cluster0.aw2rp.mongodb.net/");
 
+// need to learn how to deploy using docker or CLI 
+
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -49,4 +51,20 @@ module.exports = {
 	User,
     Account
 };
-//transaction in database
+//transaction in database using session and abort session
+
+
+function useDebounce(){
+    const [debounced , setDebounced] = useState("");
+   
+    useEffect(()=>{
+        
+        let timeoutNumber = setTimeout(() => {
+            setDebounced(value)
+        }, 500);
+
+        return()=>{
+            clearTimeout(timeoutNumber)
+        }
+    } )
+}
